@@ -189,7 +189,7 @@ def get_zombie_packer_keys(regions):
     for region in regions:
         regionoutput = []
         if debug is True:
-            print("Scanning region {region} for keys")
+            print(f"Scanning region {region} for keys")
 
         # Create our EC2 Handler
         ec2 = boto3.client('ec2', region_name=region)
@@ -246,7 +246,7 @@ def lambda_handler(event, context):
     zombies = get_zombie_packer_instances(regions, max_age)
     for region,instances in zombies.items():
         if len(instances) == 0:
-            print("Found NO zombie instances in {region}, skipping...")
+            print(f"Found NO zombie instances in {region}, skipping...")
             continue
 
         print(f"Found {len(instances)} zombie packer instances in {region}, now terminating...")
